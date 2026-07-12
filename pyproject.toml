@@ -1,16 +1,40 @@
-[tool.poetry]
+[project]
 name = "broker"
 version = "0.1.0"
-description = ""
-authors = ["netro <hewi@git.com>"]
+description = "RabbitMQ broker examples for synchronous pika and asynchronous aio-pika clients."
+authors = [
+    {name = "netro", email = "hewi@git.com"}
+]
+requires-python = ">=3.11,<4.0"
+dependencies = [
+    "pika (>=1.4.1,<2.0.0)",
+    "aio-pika (>=10.0.1,<11.0.0)"
+]
 
-[tool.poetry.dependencies]
-python = "^3.10"
-pika = "^1.3.0"
-aio-pika = "^8.0.3"
-
-[tool.poetry.dev-dependencies]
+[tool.poetry]
+package-mode = false
 
 [build-system]
-requires = ["poetry-core>=1.0.0"]
+requires = ["poetry-core>=2.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[dependency-groups]
+dev = [
+    "pytest (>=9.1.1,<10.0.0)",
+    "pytest-cov (>=7.1.0,<8.0.0)",
+    "pytest-asyncio (>=1.4.0,<2.0.0)",
+    "pip-audit (>=2.10.1,<3.0.0)",
+    "poetry-plugin-export (>=1.10.0,<2.0.0)"
+]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+python_files = ["test_*.py", "*_test.py", "test.py"]
+addopts = "--cov=sync --cov=asyncb --cov-report=term-missing --cov-fail-under=93"
+
+[tool.coverage.run]
+branch = true
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = false

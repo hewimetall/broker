@@ -10,7 +10,7 @@ publishing, one-shot consuming, and callback-based consuming.
 
 ## Requirements
 
-- Python 3.10 or newer (`python3` on Debian/Ubuntu based systems)
+- Python 3.11 or newer (`python3` on Debian/Ubuntu based systems)
 - Poetry 2.x
 - RabbitMQ reachable from the machine running the examples
 
